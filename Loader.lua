@@ -1,51 +1,94 @@
 
+game:GetService("StarterGui"):SetCore("SendNotification",{
+    Title = "Ninja Legends GUI",
+    Text = "Made by DINO#1390",
+    Button1 = "Ok",
+    Duration = 5
+    })
+
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("DoraxHub | Ninja Legends", "Sentinel")
-local Farm = Window:NewYab("Auto Farm")
-local FarmSection = Farm:NewSection("Farm")
-FarmSection:NewToggle("Auto Swing","Make your player autoswing", function(v)
-  getgenv().autoswing = v
-  while true do
-      if not getgenv().autoswing then return end
-      for _.v in pairs(game.Players.LocalPlayer.Bacpack:GetChildren()) do
-        if v:FindFirstChild("ninjitsuGain") then 
-          game.Player.LocalPlayer.Character.Humanoid:EquipTool(v)
-          break
-        end
-      end
-      local A_1 = "swingKatana"
-      local Event = game:GetServide("Players").LocalPlayer.ninjaEvent
-      wait(0.1)
-  end
-end)
-FarmSection:NewToggle("Auto Sell", "Makes your player autosell", function(v)
-        getgenv().autosell = v
-        while true do
-            if getgenv().autoswing == false then return end
-            game:GetService("Workspace").sellAreaCircles["sellAreaCircle16"].circleInner.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-            wait(0.1)
-            game:GetService("Workspace").sellAreaCircles["sellAreaCircle16"].circleInner.CFrame = CFrame.new(0,0,0)
-            wait(0.1)
-        end
+
+local Window = Library.CreateLib("Ninja Legends | Made By DINO#1390", "BloodTheme")
+
+local Tab = Window:NewTab("Main Stuff")
+
+local Section = Tab:NewSection("Main Stuff")
+
+Section:NewToggle("Autofarm (Must Hold Out Weapon)", "Autofarms Ninjitsu", function(state)
+    if state then
+        _G.Autofarm = true
+while _G.Autofarm do
+wait(.0000000000000000000000000000000000000000000001)
+local args = {
+    [1] = "swingKatana"
+}
+
+game:GetService("Players").LocalPlayer.ninjaEvent:FireServer(unpack(args))
+end
+else
+    _G.Autofarm = false
+    end
 end)
 
-FarmSection:NewButton("Unlock all islands", "Unlocks all islands", function()
-        local oldcframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-        for _,v in pairs(game:GetService("Workspace").islandUnlockParts:GetChildren()) do
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
-            wait(0.1)
-        end
-        wait(0.1)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = oldcframe
-    end)
-FarmSection:NewToggle("Auto buy all belts", "Auto buys all belts", function(v)
-        getgenv().buybelts = v
-        while true do
-            if not getgenv().buybelts then return end
-            local A_1 = "buyAllBelts"
-            local A_2 = "Inner Peace Island"
-            local Event = game:GetService("Players").LocalPlayer.ninjaEvent
-            Event:FireServer(A_1, A_2)
-            wait(0.5)
-        end
-    end)
+Section:NewToggle("AutoSell", "AutoSells Ninjitsu", function(state)
+    if state then
+        _G.Autosell = true
+while _G.Autosell do
+wait(.0000000000000000000000000000000000000000000001)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(88, 91245, 113)
+end
+    else
+        _G.Autosell = false
+    end
+end)
+
+local Tab = Window:NewTab("Teleport")
+
+local Section = Tab:NewSection("Teleports")
+
+Section:NewButton("Enchanted Island", "Teleport", function()
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(51, 767, -152)
+end)
+
+Section:NewButton("Astral Island", "Teleport", function()
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(216, 2014, 256)
+end)
+
+Section:NewButton("Mystical Island", "Teleport", function()
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(185, 4049, 46)
+end)
+Section:NewButton("Space Island", "Teleport", function()
+  game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(139, 5657, 124)
+end)
+
+Section:NewButton("Tundra Island", "Teleport", function()
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(145, 9285, 90)
+end)
+
+Section:NewButton("Eternal Island", "Teleport", function()
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(145, 13680, 90)
+end)
+
+Section:NewButton("Sandstorm Island", "Teleport", function()
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(145, 17686, 90)
+end)
+
+Section:NewButton("Thunderstrom Island", "Teleport", function()
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(145, 24070, 90)
+end)
+
+Section:NewButton("Ancient Inferno Island", "Teleport", function()
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(144, 28256, 88)
+end)
+
+Section:NewButton("Midnight Shadow Island", "Teleport", function()
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(144, 33207, 88)
+end)
+
+Section:NewButton("Inner Peace Island", "Teleport", function()
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(144, 87051, 88)
+end)
+
+Section:NewButton("Blazing Vortex Island", "Teleport", function()
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(144, 91246, 88)
+end)
